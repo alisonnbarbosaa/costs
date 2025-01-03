@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Company from "./components/pages/Company";
+import Contact from "./components/pages/Contact";
+import NewProject from "./components/pages/NewProject";
+import Container from "./components/layout/Container";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <header>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/contact">Contato</Link>
+          <Link to="/company">Empresa</Link>
+          <Link to="/newproject">Novo Projeto</Link>
+        </nav>
+      </header>
+      <Container customClass="min-h-[75%]">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/newproject" element={<NewProject />} />
+        </Routes>
+      </Container>
+      <footer>
+        <p>footer</p>
+      </footer>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
